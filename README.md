@@ -1,45 +1,103 @@
-extfat utils is a utility to manipulate extfat images.
+# ExtFAT File System Project 
 
-# Command Options:
--i xxx    where xxx is the input file name [This is optional, but -i test.image is implied if not specified]
--o xxx    where xxx is the output file name [This is optional, inputFile will be used if not specified]
--c        triggers the copying of input to output (This is optional)
--m        use mmap for file access. [implied if -f and -m not specified]
--f        use fread for file access
--v        verify exfat image
--h        is this help message
--d        print root directory structure
--x xxx    where xxx is the file to be extracted 
+This project is a simplified implementation of the Extended File Allocation Table (ExtFAT) system, created for educational purposes as part of the CSE 3310 course at the University of Texas at Arlington. It includes tools for file system operations, image handling, and example programs demonstrating access and manipulation of image files.
 
-# Example Invocations:
+---
+
+## Project Structure
+
+```
+Extfat_3310_project-main/
+├── include/               # Header files for file system and utility routines
+├── common/                # Shared source files and helper functions
+├── examples/              # Example programs and bash scripts to test the file system
+├── .vscode/               # VS Code configuration files
+├── .devcontainer/         # Docker Dev Container setup (optional)
+├── complex.image          # Sample file system image
+├── Makefile               # Build configuration
+├── README.md              # Project documentation
+```
+
+---
+
+## extfat utils
+
+`extfat` is a utility to manipulate ExtFAT image files.
+
+### Command Options
+
+```
+-i xxx    Input file name (default: test.image)
+-o xxx    Output file name (default: same as input file)
+-c        Copy input to output
+-m        Use mmap for file access (default if -f and -m are not specified)
+-f        Use fread for file access
+-v        Verify ExtFAT image
+-h        Display help message
+-d        Print root directory structure
+-x xxx    Extract a file named xxx from the image
+```
+
+### Example Invocations
+
+```
 extfat -c -i inputFile.image -o outputFile.image
 extfat -c -f -i inputFile.image -o outputFile.image
 extfat -v -f -i inputFile.image
 extfat -v -i inputFile.image
 extfat -d -i inputFile.image
 extfat -x extractFile.image -i inputFile.image -o outputFile.image
-
-# Internals
-
-## Build Process
-```bash
-% make clean
-% make
-
-To run the tests
-% make tests
-
 ```
 
-## Examples
-There is a directory of examples.  They are compiled by default using the makefile
-Before you can run the example programs, you need to have an file image.
+---
+
+## Build Instructions
 
 ```bash
-% bash /examples/create_image.bash
-% ./examples/fread
-% ./examples/mmap
+make clean
+make
 ```
+
+To run tests:
+
+```bash
+make tests
+```
+
+---
+
+## Run Examples
+
+Navigate to the examples folder and create an image before running:
+
+```bash
+bash examples/create_image.bash
+./examples/fread
+./examples/mmap
+```
+
+To mount and unmount:
+
+```bash
+bash examples/mount_image.bash
+bash examples/unmount_images.bash
+```
+
+---
+
+## Development Environment (Optional)
+
+To use the included VS Code Dev Container:
+
+1. Install Docker and Visual Studio Code
+2. Open the folder in VS Code
+3. Choose "Reopen in Container" when prompted
+
+---
+
+## Author
+Rency Kansagra (Group Member 11) 
+University of Texas at Arlington
 
 
 
